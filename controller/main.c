@@ -101,8 +101,8 @@ static void adc_init(void)
 		
 }
 
-unsigned char ch0_ascii[] = {0,0,0,0,'\0'};
-unsigned char ch1_ascii[] = {0,0,0,0,'\0'};
+unsigned char ch0_ascii[] = {0,0,0,0,0,'\0'};
+unsigned char ch1_ascii[] = {0,0,0,0,0,'\0'};
 	
 void int_to_string(unsigned int val,unsigned char *temp_str_data)
 {
