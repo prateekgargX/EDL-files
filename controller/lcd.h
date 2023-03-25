@@ -86,10 +86,10 @@ void lcd_write_string(unsigned char *s)
 void int_to_string(unsigned int val,unsigned char *temp_str_data)
 {
 	// char str_data[4]=0;
-	temp_str_data[0]=48+(val/10000);
-	temp_str_data[1]=48+(val%10000/1000);
-	temp_str_data[2]=48+((val%1000)/100);
-	temp_str_data[3]=48+((val%100)/10);
-	temp_str_data[4]=48+(val%10);
+	temp_str_data[0]=48+(val/1000);
+	temp_str_data[1]=48+(val%1000/100);
+	temp_str_data[2]=48+((val%100)/10);
+	temp_str_data[3]=48+((val%10));
+//	temp_str_data[4]=48+(val%10);
 	// return str_data;
 }
