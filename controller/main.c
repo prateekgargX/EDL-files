@@ -101,19 +101,8 @@ static void adc_init(void)
 		
 }
 
-unsigned char ch0_ascii[] = {0,0,0,0,0,'\0'};
-unsigned char ch1_ascii[] = {0,0,0,0,0,'\0'};
-	
-void int_to_string(unsigned int val,unsigned char *temp_str_data)
-{
-	// char str_data[4]=0;
-	//temp_str_data[0]=48+(val/10000);
-	temp_str_data[0]=48+(val%10000/1000);
-	temp_str_data[1]=48+((val%1000)/100);
-	temp_str_data[2]=48+((val%100)/10);
-	temp_str_data[3]=48+(val%10);
-	// return str_data;
-}
+unsigned char ch0_ascii[] = {0,0,0,0,'\0'};
+unsigned char ch1_ascii[] = {0,0,0,0,'\0'};
 
 int main (void)
 {
@@ -145,10 +134,12 @@ int main (void)
 		dac_set_channel_value(&MAIN_DAC, MAIN_DAC_CHANNEL, ramp[i]);
 		int_to_string((unsigned int) (((3.3*ramp[i])/4096/16)*1000),DAC_data);
 
-		lcd_cmd(0x8b);
+		lcd_cmd(0xC0);
+		lcd_write_string("DAC_O: ");
 		lcd_write_string(DAC_data);
+		lcd_write_string("mV");
 		//_delay_ms(2000);
-		//i = (i+1)%16;
+		i = (i+1)%16;
 		adc_start_conversion(&MY_ADC, MY_ADC_CH0);
 		adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH0);
 		result_ch0 = adc_get_result(&MY_ADC, MY_ADC_CH0);
@@ -161,15 +152,14 @@ int main (void)
 		int_to_string((unsigned int) (((3.3*result_ch1)/4096)*1000),ch1_ascii);
 		
 		lcd_cmd(0x80);
-		lcd_write_string("CH0 : ");		
+		lcd_write_string("C0:");		
 		lcd_write_string(ch0_ascii);
-
-		lcd_cmd(0xC0);
-		lcd_write_string("CH1 : ");
+		lcd_write_string(" ");
+		lcd_write_string("C1:");
 		lcd_write_string(ch1_ascii);
-				
+//		lcd_write_string("mV ");		
 		
-		//_delay_ms(2000);
+		//_delay_ms(10000);
 
 	}
 }
