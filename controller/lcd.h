@@ -2,13 +2,15 @@
  	lcd.h: Header file for 16x2 LCD interfacing  
 **************************************************/
 
-//Functions contained in this header file																	//fn takes integer value as an input and generates corresponding delay in milli seconds
-void lcd_init(void);																				//Initialize LCD
-void lcd_cmd(unsigned int i);																//Sends commands to lcd
-void lcd_char(unsigned char ch);														//display character on a lcd corresponding to input ascii
-void lcd_write_string(unsigned char *s);										//takes pointer of a string which ends with null and display on a lcd  
+//Functions contained in this header file											
+void lcd_init(void);  //Initialize LCD
+void lcd_cmd(unsigned int i); //Sends commands to lcd
+void lcd_char(unsigned char ch); //display character on lcd 
+void lcd_write_string(unsigned char *s); 
+//takes pointer of a string which ends with null and display on a lcd  
 void lcd_write_char(unsigned char ch);
-void int_to_string(unsigned int val,unsigned char *temp_str_data); // utility to convert int to string.
+void int_to_string(unsigned int val,unsigned char *temp_str_data); 
+// utility to convert int to string for printing
 
 
 //Function definitions
@@ -85,11 +87,8 @@ void lcd_write_string(unsigned char *s)
 
 void int_to_string(unsigned int val,unsigned char *temp_str_data)
 {
-	// char str_data[4]=0;
 	temp_str_data[0]=48+(val/1000);
 	temp_str_data[1]=48+(val%1000/100);
 	temp_str_data[2]=48+((val%100)/10);
 	temp_str_data[3]=48+((val%10));
-//	temp_str_data[4]=48+(val%10);
-	// return str_data;
 }
