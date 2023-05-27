@@ -1,2 +1,2 @@
 # EDL-files
-code for edl prject
+code for edl project
